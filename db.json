@@ -1,0 +1,74 @@
+{
+  "users": [
+    {
+      "id": "cwKiF_XLcq5QcwJOSphaP",
+      "name": "Perla Peralta",
+      "email": "perlap@mail.com"
+    },
+    {
+      "id": "H9054JhJgea6mVuSiy20F",
+      "name": "Jhon Doe Abott",
+      "email": "jdoeabott@mail.com"
+    },
+    {
+      "id": "MuMc2ANSKnbLw0Ag5Yvwk",
+      "name": "New user",
+      "email": "new_user@myMail.com"
+    },
+    {
+      "id": "baDNcFuNNkBg4yUjYV5PI"
+    },
+    {
+      "id": "BFRmPfqoXx5Mqbs-AQ20M",
+      "name": "Jhon Doe",
+      "email": "jhonDoe@myMail.com"
+    },
+    {
+      "id": "G5pGbQo1DItA3r7IRbior"
+    },
+    {
+      "id": "RLQ6U0e7zWwGQuvPCQXlp"
+    },
+    {
+      "id": "6R0X7Uc_OmTEwvC9bQgd5"
+    },
+    {
+      "id": "0RsldJiBYjSIEeSsCn7wm",
+      "name": "Jhon Doe",
+      "email": "jhonDoe@myMail.com"
+    },
+    {
+      "id": "NbODcE_8y45HRitB05hUu",
+      "name": "Jhon Doe",
+      "email": "jhonDoe@myMail.com"
+    },
+    {
+      "id": "hCyYe9V7PwaRK5WDP_4uV",
+      "name": "Jhon Doe",
+      "email": "jhonDoe@myMail.com"
+    },
+    {
+      "id": "X4omWPeEDNR-RaNz3imMx",
+      "name": "Jhon Doe",
+      "email": "jhonDoe@myMail.com"
+    }
+  ],
+  "category": [
+    {
+      "id": "5r4D_ct3llwEG3780jKS0",
+      "name": "aaaaa"
+    },
+    {
+      "id": "H9054JhJgea6mVuSiy20F",
+      "name": "abcdef"
+    }
+  ],
+  "item": [
+    {
+      "id": "XLF0aqNKn1hItJ59j3gqM",
+      "name": "name",
+      "category": "category2",
+      "price": 100
+    }
+  ]
+}

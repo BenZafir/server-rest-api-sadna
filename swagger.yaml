@@ -1,0 +1,385 @@
+openapi: 3.0.0
+info:
+  title: Users API
+  version: 1.0.0
+  description: A simple express library API
+servers:
+  - url: http://localhost:3000
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: auto-generated id of an user
+        name:
+          type: string
+          description: the name of an user
+        email:
+          type: string
+          description: the email of an user
+      required:
+        - name
+        - email
+      example:
+        id: id
+        name: name
+        email: email@email.com
+    UserNotFound:
+      type: object
+      properties:
+        message:
+          type: string
+          description: user was not found
+      example:
+        message: a message for the not found user
+    Category:
+      type: object
+      properties:
+        id:
+          type: string
+          description: auto-generated id of an Category
+        name:
+          type: string
+          description: the name of an Category
+      required:
+        - name
+      example:
+        id: id
+        name: name
+    CategoryNotFound:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Category was not found
+      example:
+        message: a message for the not found Category
+    Item:
+      type: object
+      properties:
+        id:
+          type: string
+          description: auto-generated id of an Item
+        name:
+          type: string
+          description: the name of an Item
+        category:
+          type: string
+          description: the category of an Item
+        price:
+          type: integer
+          description: the price of an Item
+      required:
+        - name
+        - category
+        - price
+      example:
+        id: id
+        name: name
+        category: category
+        price: 100
+    ItemNotFound:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Item was not found
+      example:
+        message: a message for the Item not found
+  parameters:
+    id:
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+      description: the user id
+tags:
+  - name: User
+    description: User API
+  - name: Category
+    description: Category API
+paths:
+  /users:
+    get:
+      summary: Returns all users from the databse
+      tags: [User]
+      responses:
+        '200':
+          description: users list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /user/{id}:
+    get:
+      summary: get an user specified by id
+      tags: [User]
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: user was found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: user was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNotFound'
+    delete:
+      summary: delete an user by id
+      tags: [User]
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: the user was deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: the user was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNotFound'
+    put:
+      summary: Update an user
+      tags: [User]
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: the user updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404': 
+          description: the user was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNotFound'
+  /user:
+    post:
+      summary: Create an user
+      tags: [User]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: the user successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '500':
+          description: some server error
+######################################################################################
+  /categories:
+    get:
+      summary: Returns all Category from the databse
+      tags: [Category]
+      responses:
+        '200':
+          description: Category list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+  /category/{id}:
+    get:
+      summary: get an Category specified by id
+      tags: [Category]
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Category was found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '404':
+          description: Category was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryNotFound'
+    delete:
+      summary: delete an Category by id
+      tags: [Category]
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: the Category was deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '404':
+          description: the Category was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryNotFound'
+    put:
+      summary: Update an Category
+      tags: [Category]
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+      responses:
+        '200':
+          description: the Category updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '404': 
+          description: the Category was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryNotFound'
+  /category:
+    post:
+      summary: Create an Category
+      tags: [Category]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+      responses:
+        '200':
+          description: the Category successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '500':
+          description: some server error
+######################################################################################
+  /items:
+    get:
+      summary: Returns all Category from the databse
+      tags: [Item]
+      responses:
+        '200':
+          description: Item list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+  /item/{id}:
+    get:
+      summary: get an Item specified by id
+      tags: [Item]
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Item was found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '404':
+          description: Item was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemNotFound'
+    delete:
+      summary: delete an Item by id
+      tags: [Item]
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: the Item was deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '404':
+          description: the Item was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemNotFound'
+    put:
+      summary: Update an Item
+      tags: [Item]
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Item'
+      responses:
+        '200':
+          description: the Item updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '404': 
+          description: the Item was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemNotFound'
+  /item:
+    post:
+      summary: Create an Item
+      tags: [Item]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Item'
+      responses:
+        '200':
+          description: the Item successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '500':
+          description: some server error

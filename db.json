@@ -1,74 +1,68 @@
 {
   "users": [
     {
-      "id": "cwKiF_XLcq5QcwJOSphaP",
-      "name": "Perla Peralta",
-      "email": "perlap@mail.com"
-    },
-    {
-      "id": "H9054JhJgea6mVuSiy20F",
-      "name": "Jhon Doe Abott",
-      "email": "jdoeabott@mail.com"
-    },
-    {
-      "id": "MuMc2ANSKnbLw0Ag5Yvwk",
-      "name": "New user",
-      "email": "new_user@myMail.com"
-    },
-    {
-      "id": "baDNcFuNNkBg4yUjYV5PI"
-    },
-    {
-      "id": "BFRmPfqoXx5Mqbs-AQ20M",
-      "name": "Jhon Doe",
-      "email": "jhonDoe@myMail.com"
-    },
-    {
-      "id": "G5pGbQo1DItA3r7IRbior"
-    },
-    {
-      "id": "RLQ6U0e7zWwGQuvPCQXlp"
-    },
-    {
-      "id": "6R0X7Uc_OmTEwvC9bQgd5"
-    },
-    {
-      "id": "0RsldJiBYjSIEeSsCn7wm",
-      "name": "Jhon Doe",
-      "email": "jhonDoe@myMail.com"
-    },
-    {
-      "id": "NbODcE_8y45HRitB05hUu",
-      "name": "Jhon Doe",
-      "email": "jhonDoe@myMail.com"
-    },
-    {
-      "id": "hCyYe9V7PwaRK5WDP_4uV",
-      "name": "Jhon Doe",
-      "email": "jhonDoe@myMail.com"
-    },
-    {
-      "id": "X4omWPeEDNR-RaNz3imMx",
-      "name": "Jhon Doe",
-      "email": "jhonDoe@myMail.com"
-    }
-  ],
-  "category": [
-    {
-      "id": "5r4D_ct3llwEG3780jKS0",
-      "name": "aaaaa"
-    },
-    {
-      "id": "H9054JhJgea6mVuSiy20F",
-      "name": "abcdef"
-    }
-  ],
-  "item": [
-    {
-      "id": "XLF0aqNKn1hItJ59j3gqM",
+      "id": "TIzfUUJXdd3IFBUCEA0oQ",
       "name": "name",
-      "category": "category2",
+      "email": "email@email.com",
+      "isAdmin": false,
+      "ordersId": [
+        "orderId"
+      ]
+    },
+    {
+      "id": "WH0oBj6gwSaYc-GeY4KPj",
+      "name": "name",
+      "email": "email@email.com",
+      "isAdmin": false,
+      "ordersId": [
+        "orderId"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "MMhOlvf8uT9AdbU1j_KWy",
+      "name": "name",
+      "img": "//http...img"
+    },
+    {
+      "id": "-zJL22_wZr9mUnGceUdp2",
+      "name": "name2",
+      "img": "//http...img"
+    }
+  ],
+  "items": [
+    {
+      "id": "noelNTpV_ZYsWT50nQ-DQ",
+      "name": "name",
+      "img": "//http...img",
+      "category": "category",
       "price": 100
+    },
+    {
+      "id": "IMEtIJpGxIGvhX9-whY9R",
+      "name": "name2",
+      "img": "//http...img",
+      "category": "category",
+      "price": 100
+    }
+  ],
+  "orders": [
+    {
+      "id": "RW3m_WK15QlRe8qNn2B2Q",
+      "userId": "userId",
+      "itemsId": [
+        "itemId_1",
+        "itemId_2"
+      ]
+    },
+    {
+      "id": "NOxthPtX-bmmVjvgni3Zx",
+      "userId": "userId2",
+      "itemsId": [
+        "itemId_1",
+        "itemId_2"
+      ]
     }
   ]
 }

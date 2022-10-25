@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import userRoutes from './routes/user.routes';
 import categoriesRoutes from './routes/categories.routes';
 import itemRoutes from './routes/item.routes';
+import orderRoutes from './routes/order.routes';
 import swaggerUI from 'swagger-ui-express';
 import yaml from 'yamljs';
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(userRoutes);
 app.use(categoriesRoutes);
 app.use(itemRoutes);
+app.use(orderRoutes);
 
 const swaggerDocument = yaml.load('./swagger.yaml');
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));

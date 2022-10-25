@@ -18,13 +18,15 @@ export const getUser: Handler = (req, res) => {
 
 export const createUser: Handler = (req, res) => {
   try {
-    const validKeys = ['name', 'email', 'id'];
+    const validKeys = ['name', 'email', 'id','ordersId','isAdmin'];
     if (Object.keys(req.body).every(key => validKeys.includes(key))) {
-      const { name, email } = req.body;
+      const { name, email, isAdmin,ordersId } = req.body;
       const newUser = {
         id: nanoid(),
         name,
         email,
+        isAdmin,
+        ordersId
       };
       getConnection().get('users').push(newUser).write();
       res.json(newUser);

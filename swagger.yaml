@@ -19,6 +19,14 @@ components:
         email:
           type: string
           description: the email of an user
+        isAdmin:
+          type: boolean
+          description: is this user user is admin
+        ordersId:
+          type: array
+          items:
+            type: string
+          description: the orders Ids of an user
       required:
         - name
         - email
@@ -26,6 +34,8 @@ components:
         id: id
         name: name
         email: email@email.com
+        isAdmin: false
+        ordersId: ["orderId"]
     UserNotFound:
       type: object
       properties:
@@ -34,6 +44,7 @@ components:
           description: user was not found
       example:
         message: a message for the not found user
+        #----------------------------------------------------#
     Category:
       type: object
       properties:
@@ -43,11 +54,16 @@ components:
         name:
           type: string
           description: the name of an Category
+        img:
+          type: string
+          description: the img of an Category
       required:
         - name
+        - img
       example:
         id: id
         name: name
+        img: //http...img
     CategoryNotFound:
       type: object
       properties:
@@ -56,6 +72,7 @@ components:
           description: Category was not found
       example:
         message: a message for the not found Category
+        #----------------------------------------------------#
     Item:
       type: object
       properties:
@@ -65,6 +82,9 @@ components:
         name:
           type: string
           description: the name of an Item
+        img:
+          type: string
+          description: the img of an Item
         category:
           type: string
           description: the category of an Item
@@ -73,11 +93,13 @@ components:
           description: the price of an Item
       required:
         - name
+        - img
         - category
         - price
       example:
         id: id
         name: name
+        img: //http...img
         category: category
         price: 100
     ItemNotFound:
@@ -88,6 +110,36 @@ components:
           description: Item was not found
       example:
         message: a message for the Item not found
+        #----------------------------------------------------#
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+          description: auto-generated id of an Order
+        userId:
+          type: string
+          description: the name of an Order
+        itemsId:
+          type: array
+          items:
+            type: string
+          description: the items id array of an Order
+      required:
+        - userId
+        - itemsId
+      example:
+        id: id
+        userId: userId
+        itemsId: ["itemId_1",itemId_2]
+    OrderNotFound:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Order was not found
+      example:
+        message: a message for the Order not found
   parameters:
     id:
       in: path
@@ -381,5 +433,100 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Item'
+        '500':
+          description: some server error
+
+######################################################################################
+  /orders:
+    get:
+      summary: Returns all Category from the databse
+      tags: [Order]
+      responses:
+        '200':
+          description: Order list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+  /order/{id}:
+    get:
+      summary: get an Order specified by id
+      tags: [Order]
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Order was found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '404':
+          description: Order was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderNotFound'
+    delete:
+      summary: delete an Order by id
+      tags: [Order]
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: the Order was deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '404':
+          description: the Order was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderNotFound'
+    put:
+      summary: Update an Order
+      tags: [Order]
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '200':
+          description: the Order updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '404': 
+          description: the Order was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderNotFound'
+  /order:
+    post:
+      summary: Create an Order
+      tags: [Order]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '200':
+          description: the Order successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
         '500':
           description: some server error

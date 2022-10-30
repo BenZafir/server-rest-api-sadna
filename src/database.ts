@@ -1,10 +1,10 @@
 import Lowdb from 'lowdb';
 import FileSync from 'lowdb/adapters/FileSync';
 
-type User = {
+export type UserDB = {
   id: string;
   name: string;
-  password? : string;
+  password : string;
   email: string;
   isAdmin: boolean;
   ordersId: string[];
@@ -27,7 +27,7 @@ type Order = {
   itemsId: string[];
 }
 type Schema = {
-  users: User[],
+  users: UserDB[],
   categories: Category[];
   items: Item[];
   orders: Order[];

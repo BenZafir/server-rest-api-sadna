@@ -1,14 +1,44 @@
 {
   "users": [
     {
-      "id": "7t3KSqrsgjiiBJEB0gUN2",
+      "id": "pEfXr0w_Gx1sjpVrp1x2F",
       "name": "name",
+      "password": "password",
       "email": "email@email.com",
       "isAdmin": false,
       "ordersId": []
     }
   ],
-  "categories": [],
-  "items": [],
-  "orders": []
+  "categories": [
+    {
+      "id": "afJZlI0SXmJOn2Ik1jxWU",
+      "name": "name",
+      "img": "//http...img"
+    }
+  ],
+  "items": [
+    {
+      "id": "Mup0DnkI-b1Q0y4QJCIrM",
+      "name": "name",
+      "img": "//http...img",
+      "category": "name",
+      "price": 100
+    }
+  ],
+  "orders": [
+    {
+      "id": "o5OaHwDz0sxqdokSDTEbS",
+      "userId": "pEfXr0w_Gx1sjpVrp1x2F",
+      "itemsId": [
+        "Mup0DnkI-b1Q0y4QJCIrM"
+      ]
+    },
+    {
+      "id": "b_6Ltb2yQJ7Qt9nU9_FcJ",
+      "userId": "pEfXr0w_Gx1sjpVrp1x2F",
+      "itemsId": [
+        "Mup0DnkI-b1Q0y4QJCIrM"
+      ]
+    }
+  ]
 }

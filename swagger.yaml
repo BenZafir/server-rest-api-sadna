@@ -45,6 +45,38 @@ components:
       example:
         message: a message for the not found user
         #----------------------------------------------------#
+    loggin:
+      type: object
+      properties:
+        userName:
+          type: string
+          description: userName
+        password:
+          type: string
+          description: password
+      required:
+        - userName
+        - password
+      example:
+        userName: userName
+        password: password
+    token:
+      type: object
+      properties:
+        token:
+          type: string
+          description: token
+      example:
+        token: tdhcoskrmgmdotrwfkkgmmpqiruacnbbiurrw==
+    unauthorizedLoggin:
+      type: object
+      properties:
+        message:
+          type: string
+          description: bad user name or password
+      example:
+        message: bad user name or password
+        #----------------------------------------------------#
     CreateUser:
       type: object
       properties:
@@ -587,5 +619,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Order'
+        '500':
+          description: some server error
+######################################################################################
+  /loggin:
+    post:
+      summary: loggin a user
+      tags: [loggin]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/loggin'
+      responses:
+        '200':
+          description: successfully loggin
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/token'
+        '401':
+          description: bad user name or password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorizedLoggin'
+        '404':
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorizedLoggin'
         '500':
           description: some server error

@@ -45,6 +45,27 @@ components:
       example:
         message: a message for the not found user
         #----------------------------------------------------#
+    CreateUser:
+      type: object
+      properties:
+        name:
+          type: string
+          description: the name of an user
+        password:
+          type: string
+          description: the password of an user
+        email:
+          type: string
+          description: the email of an user
+      required:
+        - name
+        - password
+        - email
+      example:
+        name: name
+        password: password
+        email: email@email.com
+        #----------------------------------------------------#
     Category:
       type: object
       properties:
@@ -237,7 +258,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/CreateUser'
       responses:
         '200':
           description: the user successfully created
@@ -247,6 +268,44 @@ paths:
                 $ref: '#/components/schemas/User'
         '500':
           description: some server error
+  /user/promote/{id}:
+    put:
+      summary: Update an user
+      tags: [User]
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: the user updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404': 
+          description: the user was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNotFound'
+  /user/demote/{id}:
+    put:
+      summary: Update an user
+      tags: [User]
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: the user updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404': 
+          description: the user was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNotFound'
 ######################################################################################
   /categories:
     get:

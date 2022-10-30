@@ -4,6 +4,7 @@ import FileSync from 'lowdb/adapters/FileSync';
 type User = {
   id: string;
   name: string;
+  password? : string;
   email: string;
   isAdmin: boolean;
   ordersId: string[];

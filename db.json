@@ -1,67 +1,43 @@
 {
   "users": [
     {
-      "id": "TIzfUUJXdd3IFBUCEA0oQ",
+      "id": "pEfXr0w_Gx1sjpVrp1x2F",
       "name": "name",
+      "password": "password",
       "email": "email@email.com",
       "isAdmin": false,
-      "ordersId": [
-        "orderId"
-      ]
-    },
-    {
-      "id": "WH0oBj6gwSaYc-GeY4KPj",
-      "name": "name",
-      "email": "email@email.com",
-      "isAdmin": false,
-      "ordersId": [
-        "orderId"
-      ]
+      "ordersId": []
     }
   ],
   "categories": [
     {
-      "id": "MMhOlvf8uT9AdbU1j_KWy",
+      "id": "afJZlI0SXmJOn2Ik1jxWU",
       "name": "name",
-      "img": "//http...img"
-    },
-    {
-      "id": "-zJL22_wZr9mUnGceUdp2",
-      "name": "name2",
       "img": "//http...img"
     }
   ],
   "items": [
     {
-      "id": "noelNTpV_ZYsWT50nQ-DQ",
+      "id": "Mup0DnkI-b1Q0y4QJCIrM",
       "name": "name",
       "img": "//http...img",
-      "category": "category",
-      "price": 100
-    },
-    {
-      "id": "IMEtIJpGxIGvhX9-whY9R",
-      "name": "name2",
-      "img": "//http...img",
-      "category": "category",
+      "category": "name",
       "price": 100
     }
   ],
   "orders": [
     {
-      "id": "RW3m_WK15QlRe8qNn2B2Q",
-      "userId": "userId",
+      "id": "o5OaHwDz0sxqdokSDTEbS",
+      "userId": "pEfXr0w_Gx1sjpVrp1x2F",
       "itemsId": [
-        "itemId_1",
-        "itemId_2"
+        "Mup0DnkI-b1Q0y4QJCIrM"
       ]
     },
     {
-      "id": "NOxthPtX-bmmVjvgni3Zx",
-      "userId": "userId2",
+      "id": "b_6Ltb2yQJ7Qt9nU9_FcJ",
+      "userId": "pEfXr0w_Gx1sjpVrp1x2F",
       "itemsId": [
-        "itemId_1",
-        "itemId_2"
+        "Mup0DnkI-b1Q0y4QJCIrM"
       ]
     }
   ]

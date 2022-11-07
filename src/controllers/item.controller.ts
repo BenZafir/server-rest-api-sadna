@@ -21,6 +21,12 @@ export const createItem: Handler = (req, res) => {
     const validKeys = ['name', 'id', 'img', 'category', 'price' ];
     if (Object.keys(req.body).every(key => validKeys.includes(key))) {
       const { name, img, category, price} = req.body;
+      const categoryCheck = getConnection().get('categories').find({ name: category }).value();
+      if(!categoryCheck)
+      {
+        res.status(400).json({ "message": "bad request" });
+        return;
+      }
       const newItem = {
         id: nanoid(),
         name,
@@ -39,10 +45,17 @@ export const createItem: Handler = (req, res) => {
 }
 
 export const updateItem: Handler = (req, res) => {
-  const categorie = getConnection().get('items').find({ id: req.params.id }).value();
-  if (!categorie) {
+  const item = getConnection().get('items').find({ id: req.params.id }).value();
+  if (!item) {
     return res.status(404).json({ "message": "categorie doesnt exists" });
-  } else {
+  }
+   else {
+    const categoryCheck = getConnection().get('categories').find({ name: req.body.category }).value();
+    if(!categoryCheck)
+    {
+      res.status(400).json({ "message": "bad request" });
+      return;
+    }
     const updatedItem = getConnection().get('items').find({ id: req.params.id }).assign(req.body).write();
     res.send(updatedItem);
   }

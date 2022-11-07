@@ -1,35 +1,79 @@
 import { Handler } from 'express';
 import { nanoid } from 'nanoid';
-import { getConnection } from '../database';
+import { getConnection, UserDB } from '../database';
+
+
+type UserData = {
+  id: string;
+  name: string;
+  email: string;
+  isAdmin: boolean;
+  ordersId: string[];
+}
 
 export const getUsers: Handler = (req, res) => {
-  const users = getConnection().get('users').value();
-  res.send(users);
+  let users = getConnection().get('users').value();
+  let userData = users.map(u => convertUserDBToUserData(u))
+  res.send(userData);
 }
 
 export const getUser: Handler = (req, res) => {
-  const user = getConnection().get('users').find({ id: req.params.id }).value();
+  let user = getConnection().get('users').find({ id: req.params.id }).value();
   if (!user) {
     return res.status(404).json({ "message": "user was not found" });
   } else {
-    res.send(user);
+    res.send(convertUserDBToUserData(user));
   }
 }
 
+export const promoteUser: Handler = (req, res) => {
+  // actor need to be admin
+  let user = getConnection().get('users').find({ id: req.params.id }).value();
+  if (!user) {
+    return res.status(404).json({ "message": "user was not found" });
+  } else {
+    const updatedUser = getConnection().get('users').find({ id: req.params.id }).assign(
+      {...user, isAdmin: true}
+    ).write();
+    res.send(convertUserDBToUserData(updatedUser));
+  }
+}
+
+export const demoteUser: Handler = (req, res) => {
+    // actor need to be admin
+    let user = getConnection().get('users').find({ id: req.params.id }).value();
+    if (!user) {
+      return res.status(404).json({ "message": "user was not found" });
+    } else {
+      const updatedUser = getConnection().get('users').find({ id: req.params.id }).assign(
+        {...user, isAdmin: false}
+      ).write();
+      res.send(convertUserDBToUserData(updatedUser));
+    }
+  }
+
 export const createUser: Handler = (req, res) => {
   try {
-    const validKeys = ['name', 'email', 'id','ordersId','isAdmin'];
+    const validKeys = ['name', 'email', 'password'];
     if (Object.keys(req.body).every(key => validKeys.includes(key))) {
-      const { name, email, isAdmin,ordersId } = req.body;
+      const { name, email, password } = req.body;
+      let newId = nanoid();
+      let user = getConnection().get('users').find({ id: newId }).value();
+      while(user)
+      {
+        newId = nanoid();
+        user = getConnection().get('users').find({ id: newId }).value();
+      }
       const newUser = {
-        id: nanoid(),
+        id: newId,
         name,
+        password: password, // TODO: ash it
         email,
-        isAdmin,
-        ordersId
+        isAdmin: false,
+        ordersId: []
       };
       getConnection().get('users').push(newUser).write();
-      res.json(newUser);
+      res.json(convertUserDBToUserData(newUser));
     } else {
       res.status(400).json({ "message": "bad request" });
     }
@@ -44,7 +88,7 @@ export const updateUser: Handler = (req, res) => {
     return res.status(404).json({ "message": "user doesnt exists" });
   } else {
     const updatedUser = getConnection().get('users').find({ id: req.params.id }).assign(req.body).write();
-    res.send(updatedUser);
+    res.send(convertUserDBToUserData(updatedUser));
   }
 }
 
@@ -54,6 +98,11 @@ export const deleteUser: Handler = (req, res) => {
     return res.status(404).json({ "message": "user doesnt exists" });
   } else {
     const deletedUser = getConnection().get('users').remove({ id: req.params.id }).write();
-    res.send(deletedUser[0]);
+    res.send(convertUserDBToUserData(deletedUser[0]));
   }
 }
+
+const convertUserDBToUserData = (user:UserDB):UserData => {
+  return <UserData>{id:user.id,name:user.name, email:user.email, isAdmin:user.isAdmin, ordersId: user.ordersId}
+}
+

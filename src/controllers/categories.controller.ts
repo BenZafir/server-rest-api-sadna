@@ -8,11 +8,11 @@ export const getCategories: Handler = (req, res) => {
 }
 
 export const getCategory: Handler = (req, res) => {
-  const categorie = getConnection().get('categories').find({ id: req.params.id }).value();
-  if (!categorie) {
+  const category = getConnection().get('categories').find({ id: req.params.id }).value();
+  if (!category) {
     return res.status(404).json({ "message": "Category was not found" });
   } else {
-    res.send(categorie);
+    res.send(category);
   }
 }
 
@@ -37,9 +37,9 @@ export const createCategory: Handler = (req, res) => {
 }
 
 export const updateCategory: Handler = (req, res) => {
-  const categorie = getConnection().get('categories').find({ id: req.params.id }).value();
-  if (!categorie) {
-    return res.status(404).json({ "message": "categorie doesnt exists" });
+  const category = getConnection().get('categories').find({ id: req.params.id }).value();
+  if (!category) {
+    return res.status(404).json({ "message": "category doesnt exists" });
   } else {
     const updatedCategory = getConnection().get('categories').find({ id: req.params.id }).assign(req.body).write();
     res.send(updatedCategory);
@@ -47,9 +47,9 @@ export const updateCategory: Handler = (req, res) => {
 }
 
 export const deleteCategory: Handler = (req, res) => {
-  const categorie = getConnection().get('categories').find({ id: req.params.id }).value();
-  if (!categorie) {
-    return res.status(404).json({ "message": "categorie doesnt exists" });
+  const category = getConnection().get('categories').find({ id: req.params.id }).value();
+  if (!category) {
+    return res.status(404).json({ "message": "category doesnt exists" });
   } else {
     const deletedCategory = getConnection().get('categories').remove({ id: req.params.id }).write();
     res.send(deletedCategory[0]);

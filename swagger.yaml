@@ -45,6 +45,59 @@ components:
       example:
         message: a message for the not found user
         #----------------------------------------------------#
+    loggin:
+      type: object
+      properties:
+        userName:
+          type: string
+          description: userName
+        password:
+          type: string
+          description: password
+      required:
+        - userName
+        - password
+      example:
+        userName: userName
+        password: password
+    token:
+      type: object
+      properties:
+        token:
+          type: string
+          description: token
+      example:
+        token: tdhcoskrmgmdotrwfkkgmmpqiruacnbbiurrw==
+    unauthorizedLoggin:
+      type: object
+      properties:
+        message:
+          type: string
+          description: bad user name or password
+      example:
+        message: bad user name or password
+        #----------------------------------------------------#
+    CreateUser:
+      type: object
+      properties:
+        name:
+          type: string
+          description: the name of an user
+        password:
+          type: string
+          description: the password of an user
+        email:
+          type: string
+          description: the email of an user
+      required:
+        - name
+        - password
+        - email
+      example:
+        name: name
+        password: password
+        email: email@email.com
+        #----------------------------------------------------#
     Category:
       type: object
       properties:
@@ -237,7 +290,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/CreateUser'
       responses:
         '200':
           description: the user successfully created
@@ -247,6 +300,44 @@ paths:
                 $ref: '#/components/schemas/User'
         '500':
           description: some server error
+  /user/promote/{id}:
+    put:
+      summary: Update an user
+      tags: [User]
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: the user updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404': 
+          description: the user was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNotFound'
+  /user/demote/{id}:
+    put:
+      summary: Update an user
+      tags: [User]
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: the user updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404': 
+          description: the user was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNotFound'
 ######################################################################################
   /categories:
     get:
@@ -528,5 +619,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Order'
+        '500':
+          description: some server error
+######################################################################################
+  /loggin:
+    post:
+      summary: loggin a user
+      tags: [loggin]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/loggin'
+      responses:
+        '200':
+          description: successfully loggin
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/token'
+        '401':
+          description: bad user name or password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorizedLoggin'
+        '404':
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorizedLoggin'
         '500':
           description: some server error

@@ -1,15 +1,15 @@
 import { Handler } from 'express';
 import { getConnection } from '../database';
 
-require("dotenv").config();
-
 export const loggin: Handler = (req, res) => {
   try {
+    const dotenv = require("dotenv");
+    dotenv.config();
     const jwt = require('jsonwebtoken');
+    // validate the keys of the json are same as the db desired keys
     const validKeys = ['userName', 'password'];
     if (Object.keys(req.body).every(key => validKeys.includes(key))) {
       const { userName, password } = req.body;
-
       let user = getConnection().get('users').find({ name: req.body.userName }).value(); // will get the user
       if (!user) { //if user not exists unauthorized user
         res.status(401).json({ "message": "bad username or password" }); 
@@ -19,10 +19,15 @@ export const loggin: Handler = (req, res) => {
       // authorization:
       if (user.password == req.body.password) { 
         const id = user.id;
-        const jwt_secret = process.env.JWT_SECRET;
+        let jwt_secret = process.env.JWT_SECRET;
         const token = jwt.sign({id}, jwt_secret);
         // token = "token" 
-        res.json(token); 
+        res.json({
+          "token": token,
+          "id": user.id,
+          "userName": user.name,
+          "password": user.password,
+        }); 
         // res.json({auth: true, token: token}) maybe we'll use this
         return;
       } 

@@ -23,7 +23,8 @@ export const loggin: Handler = (req, res) => {
         const token = jwt.sign({id}, jwt_secret);
         // token = "token" 
         res.json(token); 
-        return; 
+        // res.json({auth: true, token: token}) maybe we'll use this
+        return;
       } 
       else{
         res.status(401).json({ "message": "bad username or password" }); 

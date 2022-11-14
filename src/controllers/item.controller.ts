@@ -8,6 +8,11 @@ export const getItems: Handler = (req, res) => {
 }
 
 export const getItem: Handler = (req, res) => {
+  // jwt = req.headers. ------------ got the jwt check if jwt valid
+  // check validity of jwt private token of the server against the client
+  // check header if admin or not false, true:
+  // admin true/false? -> doesn't matter so we will not check either or either....
+
   const categorie = getConnection().get('items').find({ id: req.params.id }).value();
   if (!categorie) {
     return res.status(404).json({ "message": "Item was not found" });
@@ -17,6 +22,7 @@ export const getItem: Handler = (req, res) => {
 }
 
 export const createItem: Handler = (req, res) => {
+  // admin or not? return 401unauthorized if not admin, if admin will use this post request regulary
   try {
     const validKeys = ['name', 'id', 'img', 'category', 'price' ];
     if (Object.keys(req.body).every(key => validKeys.includes(key))) {
@@ -45,6 +51,7 @@ export const createItem: Handler = (req, res) => {
 }
 
 export const updateItem: Handler = (req, res) => {
+  // admin or not? return 401unauthorized if not admin, if admin will use this post request regulary
   const item = getConnection().get('items').find({ id: req.params.id }).value();
   if (!item) {
     return res.status(404).json({ "message": "categorie doesnt exists" });
@@ -61,7 +68,9 @@ export const updateItem: Handler = (req, res) => {
   }
 }
 
+
 export const deleteItem: Handler = (req, res) => {
+  // admin or not? return 401unauthorized if not admin, if admin will use this post request regulary
   const categorie = getConnection().get('items').find({ id: req.params.id }).value();
   if (!categorie) {
     return res.status(404).json({ "message": "categorie doesnt exists" });

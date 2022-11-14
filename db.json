@@ -7,6 +7,14 @@
       "email": "email@email.com",
       "isAdmin": false,
       "ordersId": []
+    },
+    {
+      "id": "mzicHzn_p_2Y_5v1l0GFL",
+      "name": "Eden",
+      "password": "eden12345",
+      "email": "edenraf@hotmailc.com",
+      "isAdmin": false,
+      "ordersId": []
     }
   ],
   "categories": [

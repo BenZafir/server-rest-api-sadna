@@ -19,14 +19,12 @@ export const loggin: Handler = (req, res) => {
       // authorization:
       if (user.password == req.body.password) { 
         const id = user.id;
-        let jwt_secret = process.env.JWT_SECRET;
-        const token = jwt.sign({id}, jwt_secret);
+        const adminPermission = user.isAdmin;
+        let jwtSecret = process.env.JWT_SECRET;
+        const token = jwt.sign({id, adminPermission}, jwtSecret);
         // token = "token" 
         res.json({
           "token": token,
-          "id": user.id,
-          "userName": user.name,
-          "password": user.password,
         }); 
         // res.json({auth: true, token: token}) maybe we'll use this
         return;

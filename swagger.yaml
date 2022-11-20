@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: A simple express library API
 servers:
-  - url: http://localhost:3000
+  - url: http://localhost:4000
 components:
   schemas:
     User:
@@ -107,16 +107,16 @@ components:
         name:
           type: string
           description: the name of an Category
-        img:
+        imageUrl:
           type: string
-          description: the img of an Category
+          description: the imageUrl of an Category
       required:
         - name
-        - img
+        - imageUrl
       example:
         id: id
         name: name
-        img: //http...img
+        imageUrl: //http...img
     CategoryNotFound:
       type: object
       properties:
@@ -135,9 +135,9 @@ components:
         name:
           type: string
           description: the name of an Item
-        img:
+        imageUrl:
           type: string
-          description: the img of an Item
+          description: the imageUrl of an Item
         category:
           type: string
           description: the category of an Item
@@ -146,13 +146,13 @@ components:
           description: the price of an Item
       required:
         - name
-        - img
+        - imageUrl
         - category
         - price
       example:
         id: id
         name: name
-        img: //http...img
+        imageUrl: //http...img
         category: category
         price: 100
     ItemNotFound:

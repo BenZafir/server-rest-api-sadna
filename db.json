@@ -15,22 +15,288 @@
       "email": "edenraf@hotmailc.com",
       "isAdmin": false,
       "ordersId": []
+    },
+    {
+      "id": "yfjDJcRREZaFKJlJf4tV7",
+      "name": "ben",
+      "password": "a",
+      "email": "ben@ben.com",
+      "isAdmin": false,
+      "ordersId": []
     }
   ],
   "categories": [
     {
-      "id": "afJZlI0SXmJOn2Ik1jxWU",
-      "name": "name",
-      "img": "//http...img"
+      "id": "afJZlI0SXmJOn2Ik1jxW1",
+      "name": "hats",
+      "imageUrl": "https://i.ibb.co/cvpntL1/hats.png"
+    },
+    {
+      "id": "afJZlI0SXmJOn2Ik1jxW2",
+      "name": "jackets",
+      "imageUrl": "https://i.ibb.co/px2tCc3/jackets.png"
+    },
+    {
+      "id": "afJZlI0SXmJOn2Ik1jxW3",
+      "name": "mens",
+      "imageUrl": "https://i.ibb.co/R70vBrQ/men.png"
+    },
+    {
+      "id": "afJZlI0SXmJOn2Ik1jxW4",
+      "name": "sneakers",
+      "imageUrl": "https://i.ibb.co/0jqHpnp/sneakers.png"
+    },
+    {
+      "id": "afJZlI0SXmJOn2Ik1jxW5",
+      "name": "womens",
+      "imageUrl": "https://i.ibb.co/GCCdy8t/womens.png"
     }
   ],
   "items": [
     {
-      "id": "Mup0DnkI-b1Q0y4QJCIrM",
-      "name": "name",
-      "img": "//http...img",
-      "category": "name",
-      "price": 100
+      "name": "Brown Brim",
+      "id": 1,
+      "price": 25,
+      "imageUrl": "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+      "category": "hats"
+    },
+    {
+      "imageUrl": "https://i.ibb.co/ypkgK0X/blue-beanie.png",
+      "id": 2,
+      "name": "Blue Beanie",
+      "price": 18,
+      "category": "hats"
+    },
+    {
+      "price": 35,
+      "imageUrl": "https://i.ibb.co/QdJwgmp/brown-cowboy.png",
+      "name": "Brown Cowboy",
+      "id": 3,
+      "category": "hats"
+    },
+    {
+      "name": "Grey Brim",
+      "imageUrl": "https://i.ibb.co/RjBLWxB/grey-brim.png",
+      "price": 25,
+      "id": 4,
+      "category": "hats"
+    },
+    {
+      "name": "Green Beanie",
+      "id": 5,
+      "imageUrl": "https://i.ibb.co/YTjW3vF/green-beanie.png",
+      "price": 18,
+      "category": "hats"
+    },
+    {
+      "id": 6,
+      "name": "Palm Tree Cap",
+      "price": 14,
+      "imageUrl": "https://i.ibb.co/rKBDvJX/palm-tree-cap.png",
+      "category": "hats"
+    },
+    {
+      "price": 18,
+      "imageUrl": "https://i.ibb.co/bLB646Z/red-beanie.png",
+      "name": "Red Beanie",
+      "id": 7,
+      "category": "hats"
+    },
+    {
+      "name": "Wolf Cap",
+      "price": 14,
+      "imageUrl": "https://i.ibb.co/1f2nWMM/wolf-cap.png",
+      "id": 8,
+      "category": "hats"
+    },
+    {
+      "name": "Blue Snapback",
+      "imageUrl": "https://i.ibb.co/X2VJP2W/blue-snapback.png",
+      "id": 9,
+      "price": 16,
+      "category": "hats"
+    },
+    {
+      "imageUrl": "https://i.ibb.co/XzcwL5s/black-shearling.png",
+      "name": "Black Jean Shearling",
+      "price": 125,
+      "id": 10,
+      "category": "Jackets"
+    },
+    {
+      "name": "Blue Jean Jacket",
+      "id": 11,
+      "imageUrl": "https://i.ibb.co/mJS6vz0/blue-jean-jacket.png",
+      "price": 90,
+      "category": "Jackets"
+    },
+    {
+      "name": "Grey Jean Jacket",
+      "id": 12,
+      "imageUrl": "https://i.ibb.co/N71k1ML/grey-jean-jacket.png",
+      "price": 90,
+      "category": "Jackets"
+    },
+    {
+      "name": "Brown Shearling",
+      "imageUrl": "https://i.ibb.co/s96FpdP/brown-shearling.png",
+      "price": 165,
+      "id": 13,
+      "category": "Jackets"
+    },
+    {
+      "imageUrl": "https://i.ibb.co/M6hHc3F/brown-trench.png",
+      "id": 14,
+      "name": "Tan Trench",
+      "price": 185,
+      "category": "Jackets"
+    },
+    {
+      "id": 15,
+      "name": "Camo Down Vest",
+      "price": 325,
+      "imageUrl": "https://i.ibb.co/xJS0T3Y/camo-vest.png",
+      "category": "Mens"
+    },
+    {
+      "id": 16,
+      "name": "Floral T-shirt",
+      "imageUrl": "https://i.ibb.co/qMQ75QZ/floral-shirt.png",
+      "price": 20,
+      "category": "Mens"
+    },
+    {
+      "price": 25,
+      "id": 17,
+      "name": "Black & White Longsleeve",
+      "imageUrl": "https://i.ibb.co/55z32tw/long-sleeve.png",
+      "category": "Mens"
+    },
+    {
+      "name": "Pink T-shirt",
+      "price": 25,
+      "id": 18,
+      "imageUrl": "https://i.ibb.co/RvwnBL8/pink-shirt.png",
+      "category": "Mens"
+    },
+    {
+      "imageUrl": "https://i.ibb.co/VpW4x5t/roll-up-jean-shirt.png",
+      "id": 19,
+      "name": "Jean Long Sleeve",
+      "price": 40,
+      "category": "Mens"
+    },
+    {
+      "imageUrl": "https://i.ibb.co/mh3VM1f/polka-dot-shirt.png",
+      "name": "Burgundy T-shirt",
+      "id": 20,
+      "price": 25,
+      "category": "Mens"
+    },
+    {
+      "id": 21,
+      "name": "Adidas NMD",
+      "imageUrl": "https://i.ibb.co/0s3pdnc/adidas-nmd.png",
+      "price": 220,
+      "category": "Sneakers"
+    },
+    {
+      "imageUrl": "https://i.ibb.co/dJbG1cT/yeezy.png",
+      "id": 22,
+      "name": "Adidas Yeezy",
+      "price": 280,
+      "category": "Sneakers"
+    },
+    {
+      "id": 23,
+      "name": "Black Converse",
+      "price": 110,
+      "imageUrl": "https://i.ibb.co/bPmVXyP/black-converse.png",
+      "category": "Sneakers"
+    },
+    {
+      "imageUrl": "https://i.ibb.co/1RcFPk0/white-nike-high-tops.png",
+      "name": "Nike White AirForce",
+      "price": 160,
+      "id": 24,
+      "category": "Sneakers"
+    },
+    {
+      "price": 160,
+      "id": 25,
+      "name": "Nike Red High Tops",
+      "imageUrl": "https://i.ibb.co/QcvzydB/nikes-red.png",
+      "category": "Sneakers"
+    },
+    {
+      "name": "Nike Brown High Tops",
+      "id": 26,
+      "imageUrl": "https://i.ibb.co/fMTV342/nike-brown.png",
+      "price": 160,
+      "category": "Sneakers"
+    },
+    {
+      "id": 27,
+      "imageUrl": "https://i.ibb.co/w4k6Ws9/nike-funky.png",
+      "name": "Air Jordan Limited",
+      "price": 190,
+      "category": "Sneakers"
+    },
+    {
+      "price": 200,
+      "imageUrl": "https://i.ibb.co/Mhh6wBg/timberlands.png",
+      "name": "Timberlands",
+      "id": 28,
+      "category": "Sneakers"
+    },
+    {
+      "price": 25,
+      "imageUrl": "https://i.ibb.co/7CQVJNm/blue-tank.png",
+      "id": 29,
+      "name": "Blue Tanktop",
+      "category": "Womens"
+    },
+    {
+      "imageUrl": "https://i.ibb.co/4W2DGKm/floral-blouse.png",
+      "price": 20,
+      "name": "Floral Blouse",
+      "id": 30,
+      "category": "Womens"
+    },
+    {
+      "price": 80,
+      "imageUrl": "https://i.ibb.co/KV18Ysr/floral-skirt.png",
+      "id": 31,
+      "name": "Floral Dress",
+      "category": "Womens"
+    },
+    {
+      "price": 80,
+      "id": 32,
+      "name": "Red Dots Dress",
+      "imageUrl": "https://i.ibb.co/N3BN1bh/red-polka-dot-dress.png",
+      "category": "Womens"
+    },
+    {
+      "price": 45,
+      "id": 33,
+      "imageUrl": "https://i.ibb.co/KmSkMbH/striped-sweater.png",
+      "name": "Striped Sweater",
+      "category": "Womens"
+    },
+    {
+      "name": "Yellow Track Suit",
+      "imageUrl": "https://i.ibb.co/v1cvwNf/yellow-track-suit.png",
+      "id": 34,
+      "price": 135,
+      "category": "Womens"
+    },
+    {
+      "price": 20,
+      "name": "White Blouse",
+      "imageUrl": "https://i.ibb.co/qBcrsJg/white-vest.png",
+      "id": 35,
+      "category": "Womens"
     }
   ],
   "orders": [

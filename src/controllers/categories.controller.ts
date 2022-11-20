@@ -18,13 +18,13 @@ export const getCategory: Handler = (req, res) => {
 
 export const createCategory: Handler = (req, res) => {
   try {
-    const validKeys = ['name', 'id','img'];
+    const validKeys = ['name', 'id','imageUrl'];
     if (Object.keys(req.body).every(key => validKeys.includes(key))) {
-      const { name,img} = req.body;
+      const { name,imageUrl} = req.body;
       const newCategory = {
         id: nanoid(),
         name,
-        img
+        imageUrl
       };
       getConnection().get('categories').push(newCategory).write();
       res.json(newCategory);

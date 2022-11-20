@@ -24,9 +24,9 @@ export const getItem: Handler = (req, res) => {
 export const createItem: Handler = (req, res) => {
   // admin or not? return 401unauthorized if not admin, if admin will use this post request regulary
   try {
-    const validKeys = ['name', 'id', 'img', 'category', 'price' ];
+    const validKeys = ['name', 'id', 'imageUrl', 'category', 'price' ];
     if (Object.keys(req.body).every(key => validKeys.includes(key))) {
-      const { name, img, category, price} = req.body;
+      const { name, imageUrl, category, price} = req.body;
       const categoryCheck = getConnection().get('categories').find({ name: category }).value();
       if(!categoryCheck)
       {
@@ -36,7 +36,7 @@ export const createItem: Handler = (req, res) => {
       const newItem = {
         id: nanoid(),
         name,
-        img,
+        imageUrl,
         category,
         price,
       };

@@ -11,7 +11,7 @@ import yaml from 'yamljs';
 
 const app = express();
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 4000);
 
 app.use(cors());
 app.use(morgan('dev'));
@@ -26,6 +26,6 @@ app.use(logginRoutes);
 
 const swaggerDocument = yaml.load('./swagger.yaml');
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
-// http://localhost:3000/docs/
+// http://localhost:4000/docs/
 
 export default app;

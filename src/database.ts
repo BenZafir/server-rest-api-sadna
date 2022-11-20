@@ -12,12 +12,12 @@ export type UserDB = {
 type Category = {
   id: string;
   name: string;
-  img: string;
+  imageUrl: string;
 }
 type Item = {
   id: string;
   name: string;
-  img: string;
+  imageUrl: string;
   category: string;
   price: string;
 }

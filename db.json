@@ -23,6 +23,46 @@
       "email": "ben@ben.com",
       "isAdmin": false,
       "ordersId": []
+    },
+    {
+      "id": "I9OSXetdo0O8alTQsEnD4",
+      "name": "Eden",
+      "password": "eden12345",
+      "email": "edenraf@hotmailc.com",
+      "isAdmin": false,
+      "ordersId": []
+    },
+    {
+      "id": "bKHHxr4gp4434rKqYi1CN",
+      "name": "Eden",
+      "password": "eden12345",
+      "email": "edenraf@hotmailc.com",
+      "isAdmin": false,
+      "ordersId": []
+    },
+    {
+      "id": "BzOR9qxOvzs2w8mlmwwhs",
+      "name": "Eden",
+      "password": "eden12345",
+      "email": "edenraf@hotmailc.com",
+      "isAdmin": false,
+      "ordersId": []
+    },
+    {
+      "id": "3xJI8HVExDQafh6tPAbSW",
+      "name": "Eden",
+      "password": "eden12345",
+      "email": "edenraf@hotmailc.com",
+      "isAdmin": false,
+      "ordersId": []
+    },
+    {
+      "id": "4iQy0t9ggcS9VCslvlX8o",
+      "name": "Nir",
+      "password": "nir12345",
+      "email": "nir@email.com",
+      "isAdmin": false,
+      "ordersId": []
     }
   ],
   "categories": [

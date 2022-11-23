@@ -1,13 +1,22 @@
 import { Handler } from 'express';
 import { nanoid } from 'nanoid';
+import { isUserAllowed } from '../auth';
 import { getConnection } from '../database';
 
-export const getOrders: Handler = (req, res) => {
+export const getOrders: Handler = async (req, res) => {
+  const adminPermissionRequired = false
+  const auth = await isUserAllowed(req.headers.authorization, adminPermissionRequired);
+  if(!auth)
+    return res.status(404).json({"message": "wronge token"});
   const orders = getConnection().get('orders').value();
   res.send(orders);
 }
 
-export const getOrder: Handler = (req, res) => {
+export const getOrder: Handler = async (req, res) => {
+  const adminPermissionRequired = false
+  const auth = await isUserAllowed(req.headers.authorization, adminPermissionRequired);
+  if(!auth)
+    return res.status(404).json({"message": "wronge token"});
   const order = getConnection().get('orders').find({ id: req.params.id }).value();
   if (!order) {
     return res.status(404).json({ "message": "order was not found" });
@@ -16,7 +25,11 @@ export const getOrder: Handler = (req, res) => {
   }
 }
 
-export const createOrder: Handler = (req, res) => {
+export const createOrder: Handler = async (req, res) => {
+  const adminPermissionRequired = false
+  const auth = await isUserAllowed(req.headers.authorization, adminPermissionRequired);
+  if(!auth)
+    return res.status(404).json({"message": "wronge token"});
   try {
     const validKeys = ['itemsId', 'userId', 'id'];
     if (Object.keys(req.body).every(key => validKeys.includes(key))) {
@@ -42,7 +55,11 @@ export const createOrder: Handler = (req, res) => {
   }
 }
 
-export const updateOrder: Handler = (req, res) => {
+export const updateOrder: Handler = async (req, res) => {
+  const adminPermissionRequired = false
+  const auth = await isUserAllowed(req.headers.authorization, adminPermissionRequired);
+  if(!auth)
+    return res.status(404).json({"message": "wronge token"});
   const order = getConnection().get('orders').find({ id: req.params.id }).value();
   if (!order) {
     return res.status(404).json({ "message": "order doesnt exists" });
@@ -58,7 +75,11 @@ export const updateOrder: Handler = (req, res) => {
   }
 }
 
-export const deleteOrder: Handler = (req, res) => {
+export const deleteOrder: Handler = async (req, res) => {
+  const adminPermissionRequired = false
+  const auth = await isUserAllowed(req.headers.authorization, adminPermissionRequired);
+  if(!auth)
+    return res.status(404).json({"message": "wronge token"});
   const order = getConnection().get('orders').find({ id: req.params.id }).value();
   if (!order) {
     return res.status(404).json({ "message": "order doesnt exists" });

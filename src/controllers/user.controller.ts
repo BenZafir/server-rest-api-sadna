@@ -1,5 +1,6 @@
 import { Handler } from 'express';
 import { nanoid } from 'nanoid';
+import { isUserAllowed } from '../auth';
 import { getConnection, UserDB } from '../database';
 
 
@@ -11,13 +12,21 @@ type UserData = {
   ordersId: string[];
 }
 
-export const getUsers: Handler = (req, res) => {
+export const getUsers: Handler = async (req, res) => {
+  const adminPermissionRequired = true
+  const auth = await isUserAllowed(req.headers.authorization, adminPermissionRequired);
+  if(!auth)
+    return res.status(404).json({"message": "wronge token"});
   let users = getConnection().get('users').value();
   let userData = users.map(u => convertUserDBToUserData(u))
   res.send(userData);
 }
 
-export const getUser: Handler = (req, res) => {
+export const getUser: Handler = async (req, res) => {
+  const adminPermissionRequired = true
+  const auth = await isUserAllowed(req.headers.authorization, adminPermissionRequired);
+  if(!auth)
+    return res.status(404).json({"message": "wronge token"});
   let user = getConnection().get('users').find({ id: req.params.id }).value();
   if (!user) {
     return res.status(404).json({ "message": "user was not found" });
@@ -26,8 +35,10 @@ export const getUser: Handler = (req, res) => {
   }
 }
 
-export const promoteUser: Handler = (req, res) => {
-  // actor need to be admin
+export const promoteUser: Handler = async (req, res) => {
+  const auth = await isUserAllowed(req.headers.authorization, true);
+  if(!auth)
+    return res.status(404).json({"message": "wronge token"});
   let user = getConnection().get('users').find({ id: req.params.id }).value();
   if (!user) {
     return res.status(404).json({ "message": "user was not found" });
@@ -39,8 +50,12 @@ export const promoteUser: Handler = (req, res) => {
   }
 }
 
-export const demoteUser: Handler = (req, res) => {
+export const demoteUser: Handler = async (req, res) => {
     // actor need to be admin
+    const adminPermissionRequired = true
+    const auth = await isUserAllowed(req.headers.authorization, adminPermissionRequired);
+    if(!auth)
+      return res.status(404).json({"message": "wronge token"});
     let user = getConnection().get('users').find({ id: req.params.id }).value();
     if (!user) {
       return res.status(404).json({ "message": "user was not found" });
@@ -82,7 +97,11 @@ export const createUser: Handler = (req, res) => {
   }
 }
 
-export const updateUser: Handler = (req, res) => {
+export const updateUser: Handler = async (req, res) => {
+  const adminPermissionRequired = false
+  const auth = await isUserAllowed(req.headers.authorization, adminPermissionRequired);
+  if(!auth)
+    return res.status(404).json({"message": "wronge token"});
   const user = getConnection().get('users').find({ id: req.params.id }).value();
   if (!user) {
     return res.status(404).json({ "message": "user doesnt exists" });
@@ -92,7 +111,11 @@ export const updateUser: Handler = (req, res) => {
   }
 }
 
-export const deleteUser: Handler = (req, res) => {
+export const deleteUser: Handler = async (req, res) => {
+  const adminPermissionRequired = true
+  const auth = await isUserAllowed(req.headers.authorization, adminPermissionRequired);
+  if(!auth)
+    return res.status(404).json({"message": "wronge token"});
   const user = getConnection().get('users').find({ id: req.params.id }).value();
   if (!user) {
     return res.status(404).json({ "message": "user doesnt exists" });

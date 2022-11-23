@@ -1,7 +1,7 @@
 {
   "name": "rest-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "01. Init node project: npm init -y\r 02. Install dependencies: npm install express lowdb morgan nanoid yamljs swagger-ui-express cors\r 03. Install dev dependencies: npm install -D typescript ts-node nodemon @types/cors @types/express @types/lowdb @types/morgan @types/yamljs @types/swagger-ui-express\r 04. Init typescript project: npx tsc --init\r 05. Configure tsconfig.json: rootDir pointing ./src and outDir pointing ./build and comment code line with \"module\": \"commonjs\" and uncomment \"moduleResolution\": \"node\",.\r 06. Validate tsconfig.json running: npx tsc\r 07. Create the scaffold.\r 08. Configure comands in package.json:\r     \"build\": \"tsc\",\r     \"dev\": \"nodemon\",\r     \"start\": \"node build/index.js\",\r 09. For deploy:\r     npm run build\r     npm start",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
@@ -35,5 +35,13 @@
     "nodemon": "^2.0.15",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BenZafir/server-rest-api-sadna.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BenZafir/server-rest-api-sadna/issues"
+  },
+  "homepage": "https://github.com/BenZafir/server-rest-api-sadna#readme"
 }

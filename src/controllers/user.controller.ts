@@ -74,6 +74,11 @@ export const createUser: Handler = (req, res) => {
       const { name, email, password } = req.body;
       let newId = nanoid();
       let user = getConnection().get('users').find({ id: newId }).value();
+      let userName = getConnection().get('users').find({ name: name }).value();
+      if(userName){
+        res.status(404).json({ "message": "user name already exists!" }); 
+        return;
+      }
       while(user)
       {
         newId = nanoid();

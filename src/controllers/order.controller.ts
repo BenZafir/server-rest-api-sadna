@@ -31,9 +31,10 @@ export const createOrder: Handler = async (req, res) => {
   if(!auth)
     return res.status(404).json({"message": "wronge token"});
   try {
-    const validKeys = ['itemsId', 'userId', 'id'];
+    let userId = auth.id
+    const validKeys = ['itemsId'];
     if (Object.keys(req.body).every(key => validKeys.includes(key))) {
-      const { userId, itemsId} = req.body;
+      const { itemsId} = req.body;
       const userCheck = getConnection().get('users').find({ id: userId }).value();
       if(!userCheck || checkItemToOrder(req.body.itemsId) == false)
       {
@@ -46,6 +47,8 @@ export const createOrder: Handler = async (req, res) => {
         itemsId,
       };
       getConnection().get('orders').push(newOrder).write();
+      userCheck.ordersId.push(newOrder.id)
+      const updatedUser = getConnection().get('users').find({ id: userCheck.id }).assign(userCheck).write();
       res.json(newOrder);
     } else {
       res.status(400).json({ "message": "bad request" });

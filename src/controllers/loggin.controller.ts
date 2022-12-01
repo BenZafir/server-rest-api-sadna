@@ -21,7 +21,7 @@ export const loggin: Handler = (req, res) => {
         const id = user.id;
         const adminPermission = user.isAdmin;
         let jwtSecret = process.env.JWT_SECRET;
-        const token = jwt.sign({id: id, isAdmin: adminPermission}, jwtSecret);
+        const token = jwt.sign({id: id,name: user.name, isAdmin: adminPermission}, jwtSecret);
         // token = "token" 
         res.json({
           "token": token,

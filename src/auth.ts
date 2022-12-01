@@ -55,7 +55,7 @@ export const getToken: any = (messyToken: any) => {
 
 export const getAuthItems = async (token: any) => {
     if(token = getToken(token)){
-        const validKeys = ['id', 'isAdmin', 'iat'];
+        const validKeys = ['id' ,'name', 'isAdmin', 'iat'];
         
         let jwtSecret = process.env.JWT_SECRET;
         return await jwt.verify(token, jwtSecret, (err: any, data: any) =>{

@@ -4,19 +4,13 @@ import { getConnection } from '../database';
 import  { isUserAllowed } from '../auth';
 
 export const getItems: Handler = async (req, res) => {
-  const adminPermissionRequired = false
-  const auth = await isUserAllowed(req.headers.authorization, adminPermissionRequired);
-  if(!auth)
-    return res.status(404).json({"message": "wronge token"});
+
   const categories = getConnection().get('items').value();
   res.send(categories);
 }
 
 export const getItem: Handler = async (req, res) => {
-  const adminPermissionRequired = false
-  const auth = await isUserAllowed(req.headers.authorization, adminPermissionRequired);
-  if(!auth)
-    return res.status(404).json({"message": "wronge token"});
+
   const categorie = getConnection().get('items').find({ id: req.params.id }).value();
   if (!categorie) {
     return res.status(404).json({ "message": "Item was not found" });

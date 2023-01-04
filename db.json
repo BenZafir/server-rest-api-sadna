@@ -1,54 +1,64 @@
 {
   "users": [
     {
-      "id": "mzicHzn_p_2Y_5v1l0GFL",
-      "name": "Eden",
-      "password": "eden12345",
-      "email": "edenraf@hotmailc.com",
-      "isAdmin": false,
-      "ordersId": [
-        "DB2UGQ01g5X10dwcsUdV7"
-      ]
-    },
-    {
       "id": "yfjDJcRREZaFKJlJf4tV7",
       "name": "ben",
-      "password": "a",
-      "email": "ben@ben.com",
+      "email": "b@email.com",
       "isAdmin": true,
-      "ordersId": []
+      "ordersId": [],
+      "user": {
+        "id": "yfjDJcRREZaFKJlJf4tV7",
+        "name": "ben",
+        "email": "b@email.com",
+        "isAdmin": true,
+        "ordersId": []
+      },
+      "password": "a"
     },
     {
       "id": "irjDJcRTEZaFKJlJf4tR8",
       "name": "ben2",
-      "password": "a",
-      "email": "ben2@ben2.com",
+      "email": "b2@email.com",
       "isAdmin": false,
-      "ordersId": []
-    },
-    {
-      "id": "I9OSXetdo0O8alTQsEnD4",
-      "name": "Eden",
-      "password": "eden12345",
-      "email": "edenraf@hotmailc.com",
-      "isAdmin": false,
-      "ordersId": []
-    },
-    {
-      "id": "bKHHxr4gp4434rKqYi1CN",
-      "name": "Eden",
-      "password": "eden12345",
-      "email": "edenraf@hotmailc.com",
-      "isAdmin": false,
-      "ordersId": []
+      "ordersId": [],
+      "user": {
+        "id": "irjDJcRTEZaFKJlJf4tR8",
+        "name": "ben2",
+        "email": "b2@email.com",
+        "isAdmin": false,
+        "ordersId": []
+      },
+      "password": "a"
     },
     {
       "id": "a",
       "name": "a",
-      "password": "a",
-      "email": "a",
+      "email": "a@email.com",
       "isAdmin": false,
-      "ordersId": []
+      "ordersId": [],
+      "user": {
+        "id": "a",
+        "name": "a",
+        "email": "a@email.com",
+        "isAdmin": false,
+        "ordersId": []
+      },
+      "password": "a"
+    },
+    {
+      "id": "uPrLS2R_Tp00s559gRpxs",
+      "name": "ben31",
+      "email": "b3@email.com",
+      "isAdmin": false,
+      "ordersId": [],
+      "user": {
+        "id": "uPrLS2R_Tp00s559gRpxs",
+        "name": "ben31",
+        "email": "b3@email.com",
+        "isAdmin": false,
+        "ordersId": []
+      },
+      "password": "a"
     }
   ],
   "categories": [
@@ -328,7 +338,7 @@
   "orders": [
     {
       "id": "DB2UGQ01g5X10dwcsUdV7",
-      "userId": "mzicHzn_p_2Y_5v1l0GFL",
+      "userId": "irjDJcRTEZaFKJlJf4tR8",
       "itemsId": [
         2,
         29,

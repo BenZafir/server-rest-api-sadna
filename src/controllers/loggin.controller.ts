@@ -1,5 +1,5 @@
 import { Handler } from 'express';
-import { getConnection } from '../database';
+import { getConnection } from '../database/database';
 
 export const loggin: Handler = (req, res) => {
   try {

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-import { getConnection } from './database';
+import { getConnection } from './database/database';
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -77,6 +77,9 @@ export const getAuthItems = async (token: any) => {
 export const isAdminAuth = async (token: any) => {
     let adminPer;
     adminPer = await getAuthItems(token);
+    if(!adminPer){
+        return false;
+    }
     return adminPer['isAdmin'];
 }
 

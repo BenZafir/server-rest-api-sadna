@@ -1,23 +1,30 @@
 import { Handler } from 'express';
 import { nanoid } from 'nanoid';
 import { isUserAllowed } from '../auth';
-import { getConnection } from '../database';
+import { getConnection } from '../database/database';
+import { OrderService } from '../services/orderService';
+import { UserService } from '../services/userService';
+import { Order } from '../models/order';
 
 export const getOrders: Handler = async (req, res) => {
   const adminPermissionRequired = false
   const auth = await isUserAllowed(req.headers.authorization, adminPermissionRequired);
-  if(!auth)
+  if(!auth){
     return res.status(404).json({"message": "wronge token"});
-  const orders = getConnection().get('orders').value();
+  }
+  const orderService = OrderService.getInstance();
+  const orders = orderService.getall();
   res.send(orders);
 }
 
 export const getOrder: Handler = async (req, res) => {
   const adminPermissionRequired = false
   const auth = await isUserAllowed(req.headers.authorization, adminPermissionRequired);
-  if(!auth)
+  if(!auth){
     return res.status(404).json({"message": "wronge token"});
-  const order = getConnection().get('orders').find({ id: req.params.id }).value();
+  }
+  const orderService = OrderService.getInstance();
+  const order = orderService.getById(req.params.id);
   if (!order) {
     return res.status(404).json({ "message": "order was not found" });
   } else {
@@ -32,27 +39,14 @@ export const createOrder: Handler = async (req, res) => {
     return res.status(404).json({"message": "wronge token"});
   try {
     let userId = auth.id
-    const validKeys = ['itemsId'];
-    if (Object.keys(req.body).every(key => validKeys.includes(key))) {
-      const { itemsId} = req.body;
-      const userCheck = getConnection().get('users').find({ id: userId }).value();
-      if(!userCheck || checkItemToOrder(req.body.itemsId) == false)
-      {
-        res.status(400).json({ "message": "bad request" });
-        return;
-      }
-      const newOrder = {
-        id: nanoid(),
-        userId,
-        itemsId,
-      };
-      getConnection().get('orders').push(newOrder).write();
-      userCheck.ordersId.push(newOrder.id)
-      const updatedUser = getConnection().get('users').find({ id: userCheck.id }).assign(userCheck).write();
-      res.json(newOrder);
-    } else {
+    const orderService = OrderService.getInstance();
+    if(!orderService.checkDataValid(req.body)){
       res.status(400).json({ "message": "bad request" });
-    }
+      return;
+    };
+    const newOrder = orderService.create({...req.body,userId});
+    res.json(newOrder);
+
   } catch (error) {
     res.status(500).send(error);
   }
@@ -61,19 +55,22 @@ export const createOrder: Handler = async (req, res) => {
 export const updateOrder: Handler = async (req, res) => {
   const adminPermissionRequired = false
   const auth = await isUserAllowed(req.headers.authorization, adminPermissionRequired);
-  if(!auth)
+  if(!auth){
     return res.status(404).json({"message": "wronge token"});
-  const order = getConnection().get('orders').find({ id: req.params.id }).value();
+  }
+  const orderService = OrderService.getInstance();
+  const userService = UserService.getInstance();
+  const order = (orderService.getById(req.params.id) as Order);
   if (!order) {
     return res.status(404).json({ "message": "order doesnt exists" });
   } else {
-    const userCheck = getConnection().get('users').find({ id: req.body.userId }).value();
-    if(!userCheck || checkItemToOrder(req.body.itemsId) == false)
+    const userCheck = userService.getById(req.body.userId);
+    if(!userCheck || orderService.checkItemToOrder(req.body.itemsId) == false)
     {
       res.status(400).json({ "message": "bad request" });
       return;
     }
-    const updatedOrder = getConnection().get('orders').find({ id: req.params.id }).assign(req.body).write();
+    const updatedOrder = orderService.update(req.params.id, req.body);
     res.send(updatedOrder);
   }
 }
@@ -81,17 +78,16 @@ export const updateOrder: Handler = async (req, res) => {
 export const deleteOrder: Handler = async (req, res) => {
   const adminPermissionRequired = false
   const auth = await isUserAllowed(req.headers.authorization, adminPermissionRequired);
-  if(!auth)
+  if(!auth){
     return res.status(404).json({"message": "wronge token"});
-  const order = getConnection().get('orders').find({ id: req.params.id }).value();
+  }
+  const orderService = OrderService.getInstance();
+  const order = orderService.getById(req.params.id);
   if (!order) {
     return res.status(404).json({ "message": "order doesnt exists" });
   } else {
-    const deletedOrder = getConnection().get('orders').remove({ id: req.params.id }).write();
-    res.send(deletedOrder[0]);
+    const deletedOrder = orderService.delete(req.params.id);
+    res.send(deletedOrder);
   }
 }
 
-const checkItemToOrder = (itemsId: string[]):boolean => {
-  return itemsId.every(i => getConnection().get('items').find({ id: i }).value() != undefined)
-}

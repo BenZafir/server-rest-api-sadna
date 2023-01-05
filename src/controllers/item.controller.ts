@@ -39,7 +39,7 @@ export const createItem: Handler = async (req, res) => {
       res.status(400).json({ "message": "bad category" });
       return;
     }
-    res.json();
+    res.json(item);
   } catch (error) {
     res.status(500).send(error);
   }

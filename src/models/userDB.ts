@@ -10,15 +10,4 @@ export class UserDB extends User{
         this.user = user;
         this.password = password;
     }
-    public update(user: User){
-        this.email = user.email;
-        this.isAdmin = user.isAdmin;
-        this.ordersId = user.ordersId;
-        if (this.isAdmin){
-            this.user = new AdminUser(this.user);
-        }
-        else{
-            this.user = new RegularUser(this.user);
-        }
-    }
 }

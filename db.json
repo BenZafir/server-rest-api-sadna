@@ -5,13 +5,19 @@
       "name": "ben",
       "email": "b@email.com",
       "isAdmin": true,
-      "ordersId": [],
+      "ordersId": [
+        "mbamO2wxeTsr4RHPtoXTb",
+        "0EYhHvMqnheA2nuliqqr6"
+      ],
       "user": {
         "id": "yfjDJcRREZaFKJlJf4tV7",
         "name": "ben",
         "email": "b@email.com",
         "isAdmin": true,
-        "ordersId": []
+        "ordersId": [
+          "mbamO2wxeTsr4RHPtoXTb",
+          "0EYhHvMqnheA2nuliqqr6"
+        ]
       },
       "password": "a"
     },
@@ -337,13 +343,12 @@
   ],
   "orders": [
     {
-      "id": "DB2UGQ01g5X10dwcsUdV7",
-      "userId": "irjDJcRTEZaFKJlJf4tR8",
+      "id": "0EYhHvMqnheA2nuliqqr6",
+      "userId": "yfjDJcRREZaFKJlJf4tV7",
       "itemsId": [
-        2,
-        29,
-        34,
-        35
+        "4",
+        "4",
+        "15"
       ]
     }
   ]

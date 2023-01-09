@@ -1,31 +1,11 @@
 import Lowdb from 'lowdb';
 import FileSync from 'lowdb/adapters/FileSync';
+import { UserDB } from '../models/userDB';
+import { Category } from '../models/category';
+import { Item } from '../models/item';
+import { Order } from '../models/order';
 
-export type UserDB = {
-  id: string;
-  name: string;
-  password : string;
-  email: string;
-  isAdmin: boolean;
-  ordersId: string[];
-}
-type Category = {
-  id: string;
-  name: string;
-  imageUrl: string;
-}
-type Item = {
-  id: string;
-  name: string;
-  imageUrl: string;
-  category: string;
-  price: string;
-}
-type Order = {
-  id: string;
-  userId: string;
-  itemsId: string[];
-}
+
 type Schema = {
   users: UserDB[],
   categories: Category[];
